@@ -1,1 +1,2 @@
 # Video-Game-Analysis
+This application will compare thousands of video games from 31 different platforms and see how successful they were. It will then be determined if there is a correlation between total sales and critics scores, or user scores, or genre, or rating. Upon analysis, companies will determine which types of ames provide the most success, or who needs to be impressed by the game to give the best chance of success.
