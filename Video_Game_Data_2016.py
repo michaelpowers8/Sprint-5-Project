@@ -61,7 +61,7 @@ print(df_games['critic_score'].unique())
 # In[118]:
 
 
-df_games['year_of_release'] = df_games['year_of_release'].fillna(-1)
+df_games['year_of_release'] = df_games['year_of_release'].fillna(df_games['year_of_release'].median())
 df_games['rating'] = df_games['rating'].fillna('Unknown')
 df_games['critic_score'] = df_games['critic_score'].fillna(df_games['critic_score'].median())
 df_games['genre'] = df_games['genre'].fillna('Unknown')
