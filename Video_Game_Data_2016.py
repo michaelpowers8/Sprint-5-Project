@@ -215,7 +215,7 @@ import plotly.express as px
 list_for_scatter = ['genre','critic_score','user_score','rating']
 choice_for_scatter = st.selectbox('Game sales dependency on ',list_for_scatter)
 scatter = px.scatter(df_games , x='total_sales' , y=choice_for_scatter , hover_data=['year_of_release'])
-scatter.update_layout(title="<b> Price vs {}<b>".format(choice_for_scatter))
+scatter.update_layout(title="<b> Sales vs {}<b>".format(choice_for_scatter))
 st.plotly_chart(scatter)
 
 
@@ -225,7 +225,7 @@ st.plotly_chart(scatter)
 list_for_scatter_2 = ['genre','critic_score','total_sales','rating']
 choice_for_scatter_2 = st.selectbox('Game user popularity dependency on ',list_for_scatter_2)
 scatter_2 = px.scatter(df_games , x='user_score' , y=choice_for_scatter_2 , hover_data=['year_of_release'])
-scatter_2.update_layout(title="<b> Price vs {}<b>".format(choice_for_scatter_2))
+scatter_2.update_layout(title="<b> User vs {}<b>".format(choice_for_scatter_2))
 st.plotly_chart(scatter_2)
 
 
@@ -235,6 +235,6 @@ st.plotly_chart(scatter_2)
 list_for_scatter_3 = ['genre','user_score','total_sales','rating']
 choice_for_scatter_3 = st.selectbox('Game critic popularity dependency on ',list_for_scatter_3)
 scatter_3 = px.scatter(df_games , x='critic_score' , y=choice_for_scatter_3 , hover_data=['year_of_release'])
-scatter_3.update_layout(title="<b> Price vs {}<b>".format(choice_for_scatter_3))
+scatter_3.update_layout(title="<b> Critic vs {}<b>".format(choice_for_scatter_3))
 st.plotly_chart(scatter_3)
 
