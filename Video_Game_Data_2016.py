@@ -234,7 +234,7 @@ st.plotly_chart(scatter_2)
 
 list_for_scatter_3 = ['genre','user_score','total_sales','rating']
 choice_for_scatter_3 = st.selectbox('Game critic popularity dependency on ',list_for_scatter_3)
-scatter_3 = px.scatter(df_games , x='user_score' , y=choice_for_scatter_3 , hover_data=['year_of_release'])
+scatter_3 = px.scatter(df_games , x='critic_score' , y=choice_for_scatter_3 , hover_data=['year_of_release'])
 scatter_3.update_layout(title="<b> Price vs {}<b>".format(choice_for_scatter_3))
 st.plotly_chart(scatter_3)
 
