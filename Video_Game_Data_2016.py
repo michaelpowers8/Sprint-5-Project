@@ -212,16 +212,6 @@ Let's see what influences the success of a game the most. We will compare total 
 
 import plotly.express as px
 
-list_for_histogram = ['genre','critic_score','user_score','rating']
-choice_for_histogram = st.selectbox('Game Distribution Characteristic',list_for_histogram)
-histogram_1 = px.histogram(df_games , x='total_sales' , color=choice_for_histogram)
-histogram_1.update_layout(title="<b> Game Popularity Choice by {}<b>".format(choice_for_histogram))
-st.plotly_chart(histogram_1)
-
-
-# In[76]:
-
-
 list_for_scatter = ['genre','critic_score','user_score','rating']
 choice_for_scatter = st.selectbox('Game success dependency on ',list_for_scatter)
 scatter = px.scatter(df_games , x='total_sales' , y=choice_for_scatter , hover_data=['year_of_release'])
