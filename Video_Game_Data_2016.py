@@ -71,7 +71,7 @@ df_games['genre'] = df_games['genre'].fillna('Unknown')
 
 
 df_games['user_score'] = df_games['user_score'].replace(to_replace='tbd',value=df_games['critic_score'].median())
-df_games['user_score'] = df_games['user_score'].fillna(df_games['critic_score'].median())
+df_games['user_score'] = df_games['user_score'].fillna(df_games['user_score'].median())
 df_games['user_score'] = df_games['user_score'].astype('float64')
 
 
