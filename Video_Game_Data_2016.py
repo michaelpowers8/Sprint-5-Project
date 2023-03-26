@@ -9,8 +9,6 @@
 
 
 import pandas as pd
-import numpy as np
-import datetime as dt
 import streamlit as st
 
 
@@ -18,19 +16,19 @@ import streamlit as st
 
 
 df_games = pd.read_csv('moved_games.csv')
-display(df_games.info())
+print(df_games.info())
 
 
 # In[48]:
 
 
-display(df_games.head(5))
+print(df_games.head(5))
 
 
 # In[49]:
 
 
-display(df_games.columns)
+print(df_games.columns)
 
 
 # In[50]:
@@ -48,14 +46,14 @@ df_games = df_games.rename(
              'Critic_Score':'critic_score',
              'User_Score':'user_score',
              'Rating':'rating'})
-display(df_games.columns)
+print(df_games.columns)
 
 
 # In[51]:
 
 
-display(df_games['user_score'].unique())
-display(df_games['critic_score'].unique())
+print(df_games['user_score'].unique())
+print(df_games['critic_score'].unique())
 
 
 # This cell will first fill empty cells with appropriate default values. Then, the year_of_release column will be changed to integers since years are not used with decimals. The user_score column should be floats, and scores with 'tbd' should be marked with the median score. This ensures the remaining data will not appear skewed and confuse others when analyzing the data later. The critic_score will be changed to integers because all scores given by critics always end in .0 meaning no decimals were used originally.
@@ -88,28 +86,28 @@ df_games['user_score'] = df_games['user_score'].astype('float64')
 # In[55]:
 
 
-display(df_games['user_score'].sort_values().unique())
-display(df_games['critic_score'].sort_values().unique())
-display(df_games['year_of_release'].sort_values().unique())
+print(df_games['user_score'].sort_values().unique())
+print(df_games['critic_score'].sort_values().unique())
+print(df_games['year_of_release'].sort_values().unique())
 
 
 # In[56]:
 
 
-display(df_games.info())
+print(df_games.info())
 
 
 # In[57]:
 
 
-display(df_games.head(10))
+print(df_games.head(10))
 
 
 # In[58]:
 
 
 df_games['total_sales'] = df_games['na_sales'] + df_games['eu_sales'] + df_games['jp_sales'] + df_games['other_sales']
-display(df_games.head(10))
+print(df_games.head(10))
 
 
 # Now that the empty cells have been filled, it is time to search for duplicate games. I will search for obvious duplicates first, and then implicit duplicates after. The duplicates will all be from the name of the games being played on the same console.
@@ -117,7 +115,7 @@ display(df_games.head(10))
 # In[59]:
 
 
-display(df_games[(df_games.duplicated())])
+print(df_games[(df_games.duplicated())])
 
 
 # No obvious duplicates. Now, it's time to search for implicit duplicates by printing duplicate names and seeing if they come from the same console.
@@ -127,7 +125,7 @@ display(df_games[(df_games.duplicated())])
 
 df_duplicate_games = df_games[df_games['name'].duplicated()]
 df_duplicate_games = df_duplicate_games.groupby(['name','platform']).count().sort_values(by='genre',ascending=False)
-display(df_duplicate_games.head(10))
+print(df_duplicate_games.head(10))
 
 
 # Three games have possible implicit duplicates: Need for Speed: Most Wanted, Madden NFL 13, and Sonic the Hedgehog. These implicit duplicates need to be removed. All sales from the duplicate value will be added to the original to ensure no lost sales counts in the data.
@@ -135,9 +133,9 @@ display(df_duplicate_games.head(10))
 # In[61]:
 
 
-display(df_games[df_games['name']=='Need for Speed: Most Wanted'])
-display(df_games[df_games['name']=='Madden NFL 13'])
-display(df_games[df_games['name']=='Sonic the Hedgehog'])
+print(df_games[df_games['name']=='Need for Speed: Most Wanted'])
+print(df_games[df_games['name']=='Madden NFL 13'])
+print(df_games[df_games['name']=='Sonic the Hedgehog'])
 
 
 # Need for Speed actually does not have any duplicates to be removed. The game was released in 2005 and 2012 on several different consoles. Madden and Sonic both have duplicate postings on the PS3. The dupicates will now be removed and the sales from the duplicate post will be added to the original.
@@ -154,8 +152,8 @@ df_games.drop(16230,inplace=True)
 # In[63]:
 
 
-display(df_games[df_games['name']=='Madden NFL 13'])
-display(df_games[df_games['name']=='Sonic the Hedgehog'])
+print(df_games[df_games['name']=='Madden NFL 13'])
+print(df_games[df_games['name']=='Sonic the Hedgehog'])
 
 
 # Now that all duplicates have been removed from the DataFrame, it's time to start building the streamlit app. I will give the app a table sorted by console since companies and players compare their games by the consoles played on. Then, I will also build scatterplots that will help show correlation between scores by critics or users, and resulting sales. If there is a correlation anywhere, this will help the companies determine who should be impressed, and how to better advertise their upcoming games.
